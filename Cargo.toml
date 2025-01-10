@@ -5,6 +5,6 @@ members = [
     "libraries/cpswap_cli",
     # "libraries/clmm_cli",
     "libraries/common",
-    "client",
+    # "client",
 ]
 exclude = ["libraries"]

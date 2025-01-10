@@ -3055,21 +3055,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "raydium-cli"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap 4.5.21",
- "common",
- "cpswap-cli",
- "solana-client",
- "solana-sdk",
- "spl-associated-token-account",
- "spl-token",
- "spl-token-2022 0.9.0",
-]
-
-[[package]]
 name = "raydium-cp-swap"
 version = "0.1.0"
 source = "git+https://github.com/miraland-labs/raydium-cp-swap#c5b0a172e6f5cedf600fbebdad0f466ea2b78fc1"
