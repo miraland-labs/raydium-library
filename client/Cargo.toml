@@ -9,16 +9,16 @@ path = "src/main.rs"
 
 [features]
 # default is mainnet
-devnet = [
-    "amm-cli/devnet",
-    "clmm-cli/devnet",
-    "cpswap-cli/devnet",
-    "common/devnet",
-]
+# devnet = [
+#     "amm-cli/devnet",
+#     "clmm-cli/devnet",
+#     "cpswap-cli/devnet",
+#     "common/devnet",
+# ]
 
 [dependencies]
-amm-cli = { path = "../libraries/amm_cli" }
-clmm-cli = { path = "../libraries/clmm_cli" }
+# amm-cli = { path = "../libraries/amm_cli" }
+# clmm-cli = { path = "../libraries/clmm_cli" }
 cpswap-cli = { path = "../libraries/cpswap_cli" }
 common = { path = "../libraries/common" }
 spl-token = { version = "4.0.0", features = ["no-entrypoint"] }
@@ -26,7 +26,7 @@ spl-associated-token-account = { version = "2.2.0", features = [
     "no-entrypoint",
 ] }
 spl-token-2022 = { version = "0.9.0", features = ["no-entrypoint"] }
-solana-client = "<1.17.0"
-solana-sdk = "<1.17.0"
+solana-client = "1.18"
+solana-sdk = "1.18"
 anyhow = "1.0.53"
 clap = { version = "4.1.8", features = ["derive"] }

@@ -4,13 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [features]
-devnet = ["raydium-cp-swap/devnet"]
+# devnet = ["raydium-cp-swap/devnet"]
 
 [dependencies]
 anchor-client = "=0.29.0"
 anchor-lang = "=0.29.0"
 anchor-spl = { version = "=0.29.0", features = ["memo", "metadata"] }
-raydium-cp-swap = { git = "https://github.com/raydium-io/raydium-cp-swap", features = [
+raydium-cp-swap = { git = "https://github.com/miraland-labs/raydium-cp-swap", features = [
     "client",
     "no-entrypoint",
 ] }
@@ -21,10 +21,10 @@ spl-associated-token-account = { version = "2.2.0", features = [
 common = { path = "../common" }
 spl-memo = "=4.0.0"
 spl-token-2022 = { version = "=0.9.0", features = ["no-entrypoint"] }
-solana-client = "<1.17.0"
-solana-sdk = "<1.17.0"
-solana-account-decoder = "<1.17.0"
-solana-transaction-status = "<1.17.0"
+solana-client = "1.18"
+solana-sdk = "1.18"
+solana-account-decoder = "1.18"
+solana-transaction-status = "1.18"
 anyhow = "1.0.53"
 rand = "0.7.3"
 bytemuck = { version = "1.7.3" }
