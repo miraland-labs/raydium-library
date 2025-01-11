@@ -256,6 +256,26 @@ pub fn swap_calculate(
     let epoch = rpc_client.get_epoch_info().unwrap().epoch;
     let [amm_config_account, token_0_vault_account, token_1_vault_account, token_0_mint_account, token_1_mint_account, user_input_token_account] =
         array_ref![rsps, 0, 6];
+
+    // MI: get_multiple_accounts may have limit of 5 accounts for some rpc-services
+    // Handle #6 account separately
+    let retrieved_account;
+    if user_input_token_account.is_none() {
+        // retrieve again separately
+        retrieved_account = match rpc_client.get_account(&user_input_token) {
+            Ok(account) => Some(account),
+            Err(_) => None,
+        }
+    } else {
+        retrieved_account = None
+    }
+
+    let user_input_token_account = if user_input_token_account.is_none() {
+        &retrieved_account
+    } else {
+        user_input_token_account
+    };
+
     // docode account
     let amm_config_state = common_utils::deserialize_anchor_account::<
         raydium_cp_swap::states::AmmConfig,
