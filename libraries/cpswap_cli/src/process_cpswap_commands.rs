@@ -137,12 +137,14 @@ pub enum CpSwapCommands {
 pub fn process_cpswap_commands(
     command: CpSwapCommands,
     config: &common_types::CommonConfig,
-    signing_keypairs: &mut Vec<Arc<dyn Signer>>,
+    // signing_keypairs: &mut Vec<Arc<dyn Signer>>,
+    signing_keypairs: &mut Vec<Arc<Keypair>>,
 ) -> Result<Option<Vec<Instruction>>> {
     let rpc_client = RpcClient::new(config.cluster().url());
     let wallet_keypair = common_utils::read_keypair_file(&config.wallet())?;
     let payer_pubkey = wallet_keypair.pubkey();
-    let payer: Arc<dyn Signer> = Arc::new(wallet_keypair);
+    // let payer: Arc<dyn Signer> = Arc::new(wallet_keypair);
+    let payer: Arc<Keypair> = Arc::new(wallet_keypair);
     if !signing_keypairs.contains(&payer) {
         signing_keypairs.push(payer);
     }
@@ -203,7 +205,8 @@ pub fn process_cpswap_commands(
             let random_pool_id = if random_pool {
                 let random_pool_keypair = Keypair::generate(&mut OsRng);
                 let random_pool_id = random_pool_keypair.pubkey();
-                let signer: Arc<dyn Signer> = Arc::new(random_pool_keypair);
+                // let signer: Arc<dyn Signer> = Arc::new(random_pool_keypair);
+                let signer: Arc<Keypair> = Arc::new(random_pool_keypair);
                 if !signing_keypairs.contains(&signer) {
                     println!("random_pool_id:{}", random_pool_id);
                     signing_keypairs.push(signer);
