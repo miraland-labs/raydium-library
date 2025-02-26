@@ -170,12 +170,14 @@ pub enum ClmmCommands {
 pub fn process_clmm_commands(
     command: ClmmCommands,
     config: &common_types::CommonConfig,
-    signing_keypairs: &mut Vec<Arc<dyn Signer>>,
+    // signing_keypairs: &mut Vec<Arc<dyn Signer>>,
+    signing_keypairs: &mut Vec<Arc<Keypair>>,
 ) -> Result<Option<Vec<Instruction>>> {
     let rpc_client = RpcClient::new(config.cluster().url());
     let wallet_keypair = common_utils::read_keypair_file(&config.wallet())?;
     let payer_pubkey = wallet_keypair.pubkey();
-    let payer: Arc<dyn Signer> = Arc::new(wallet_keypair);
+    // let payer: Arc<dyn Signer> = Arc::new(wallet_keypair);
+    let payer: Arc<Keypair> = Arc::new(wallet_keypair);
     if !signing_keypairs.contains(&payer) {
         signing_keypairs.push(payer);
     }
@@ -284,7 +286,8 @@ pub fn process_clmm_commands(
                 // new nft mint
                 let nft_mint = Keypair::generate(&mut OsRng);
                 let nft_mint_key = nft_mint.pubkey();
-                let signer: Arc<dyn Signer> = Arc::new(nft_mint);
+                // let signer: Arc<dyn Signer> = Arc::new(nft_mint);
+                let signer: Arc<Keypair> = Arc::new(nft_mint);
                 if !signing_keypairs.contains(&signer) {
                     signing_keypairs.push(signer);
                 }
